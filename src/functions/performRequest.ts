@@ -1,6 +1,8 @@
 import http from "node:http";
 import https from "node:https";
 
+import { ConnectionSettings } from "../types";
+
 const protocols = { http, https };
 
 export const performRequest = async ({
@@ -8,6 +10,11 @@ export const performRequest = async ({
   method,
   methodArguments,
   sessionId,
+}: {
+  connectionSettings: ConnectionSettings;
+  method: string;
+  methodArguments: string[];
+  sessionId: string;
 }): Promise<string> => {
   return new Promise((resolve, reject) => {
     let data: Buffer[] = [];

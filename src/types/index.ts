@@ -1,4 +1,5 @@
 import { TORRENT_DATA_REQUEST_FIELDS } from "../constants";
+
 export interface ConnectionSettings {
   hostname: string;
   protocol: string;

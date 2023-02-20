@@ -3,7 +3,7 @@ import { ConnectionSettings } from "../types";
 
 export const stopTorrent = async (
   connectionSettings: ConnectionSettings,
-  ids: string[]
+  ids?: string | string[]
 ) => {
   const sessionId = await getSessionId(connectionSettings);
 
@@ -13,6 +13,8 @@ export const stopTorrent = async (
     methodArguments: { ids: !!ids?.length ? ids : undefined },
     sessionId,
   });
+
   const { result } = JSON.parse(stopTorrentResponse);
+
   return { result };
 };

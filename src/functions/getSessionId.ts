@@ -1,8 +1,16 @@
 import http from "node:http";
 import https from "node:https";
 
+import { ConnectionSettings } from "../types";
+
 const protocols = { http, https };
-export const getSessionId = async ({ hostname, path, port, protocol }) => {
+
+export const getSessionId = async ({
+  hostname,
+  path,
+  port,
+  protocol,
+}: ConnectionSettings): Promise<string> => {
   return new Promise((resolve, reject) => {
     const req = protocols.http.request(
       {
@@ -15,7 +23,9 @@ export const getSessionId = async ({ hostname, path, port, protocol }) => {
       (res) => {
         res.on("end", () => {
           if (res.statusCode === 200 || res.statusCode === 409) {
-            const sessionId = res.headers["x-transmission-session-id"];
+            const sessionId = res.headers[
+              "x-transmission-session-id"
+            ] as string;
             resolve(sessionId);
           } else {
             reject(new Error(`HTTP request error: ${res.statusCode}`));
