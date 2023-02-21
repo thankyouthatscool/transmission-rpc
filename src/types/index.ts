@@ -4,3 +4,12 @@ export interface ConnectionSettings {
   password?: string;
   username?: string;
 }
+
+export enum TransmissionMethods {
+  TorrentGet = "torrent-get",
+}
+
+export interface Torrent {
+  id: number;
+  name: string;
+}

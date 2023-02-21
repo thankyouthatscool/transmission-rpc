@@ -47,7 +47,6 @@ export const getSessionId = ({
     );
 
     req.on("error", (err) => reject(err));
-    req.write(JSON.stringify({}));
     req.end();
   });
 };
