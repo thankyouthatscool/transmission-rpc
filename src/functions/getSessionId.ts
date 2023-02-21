@@ -14,10 +14,13 @@ export const getSessionId = ({
   return new Promise((resolve, reject) => {
     const { host: hostname, protocol } = new URL(address);
 
-    console.log(Buffer.from("admin|password").toString("base64"));
-
     const req = protocols[protocol === "http:" ? "http" : "https"].request(
       {
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            `${username}:${password}`
+          ).toString("base64")}`,
+        },
         hostname,
         method: "POST",
         path: "/transmission/rpc",
@@ -41,11 +44,6 @@ export const getSessionId = ({
           }
         });
       }
-    );
-
-    req.setHeader(
-      "authorization",
-      `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`
     );
 
     req.on("error", (err) => reject(err));
