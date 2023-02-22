@@ -7,6 +7,8 @@ export interface ConnectionSettings {
 
 export enum TransmissionMethods {
   TorrentGet = "torrent-get",
+  TorrentStop = "torrent-stop",
+  TorrentStart = "torrent-start",
 }
 
 export interface Torrent {

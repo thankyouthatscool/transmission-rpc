@@ -9,7 +9,7 @@ export const performRequest = async (
   connectionSettings: ConnectionSettings,
   sessionId: string,
   transmissionMethod: TransmissionMethods,
-  transmissionmethodArguments: any
+  transmissionmethodArguments?: any
 ): Promise<string> => {
   const { address, port, username, password } = connectionSettings;
 
